@@ -55,6 +55,16 @@ server.get(/.*/, restify.serveStatic({
 	'default': 'index.html'
 }));
 
+server.get('/hello/:name', function (req, res, next) {
+  res.send('hello ' + req.params.name);
+  next();
+});
+
+server.get('/appid', function (req, res, next) {
+  res.send('hello ' + process.env.MICROSOFT_APP_ID);
+  next();
+});
+
 //=========================================================
 // Activity Events
 //=========================================================
