@@ -1,0 +1,24 @@
+{
+  "name": "skypebot",
+  "version": "1.0.0",
+  "description": "example of https://github.com/Microsoft/BotBuilder/blob/master/Node/examples/demo-skype/app.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmarshall/skypebot.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danmarshall/skypebot/issues"
+  },
+  "homepage": "https://github.com/danmarshall/skypebot#readme",
+  "dependencies": {
+    "botbuilder": "^3.2.3",
+    "restify": "^4.1.1"
+  }
+}

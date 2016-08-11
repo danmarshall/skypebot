@@ -29,7 +29,7 @@ send Receipts, and use Carousels.
 -----------------------------------------------------------------------------*/
 
 var restify = require('restify');
-var builder = require('../../core/');
+var builder = require('botbuilder');
 
 //=========================================================
 // Bot Setup
@@ -96,7 +96,13 @@ bot.on('contactRelationUpdate', function (message) {
 });
 
 bot.on('typing', function (message) {
+    console.log('user is typing');
+
     // User is typing
+        var reply = new builder.Message()
+                .address(message.address)
+                .text('i see you are typing something');
+        bot.send(reply);
 });
 
 bot.on('deleteUserData', function (message) {
