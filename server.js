@@ -49,21 +49,21 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-// Serve a static web page
-server.get(/.*/, restify.serveStatic({
-	'directory': '.',
-	'default': 'index.html'
-}));
-
 server.get('/hello/:name', function (req, res, next) {
   res.send('hello ' + req.params.name);
   next();
 });
 
 server.get('/appid', function (req, res, next) {
-  res.send('hello ' + process.env.MICROSOFT_APP_ID);
+  res.send('appid is ' + process.env.MICROSOFT_APP_ID);
   next();
 });
+
+// Serve a static web page
+server.get(/.*/, restify.serveStatic({
+	'directory': '.',
+	'default': 'index.html'
+}));
 
 //=========================================================
 // Activity Events
