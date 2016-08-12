@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/danmarshall/skypebot#readme",
   "dependencies": {
+    "applicationinsights": "^0.15.18",
     "botbuilder": "^3.2.3",
     "restify": "^4.1.1"
   }

@@ -30,6 +30,9 @@ send Receipts, and use Carousels.
 
 var restify = require('restify');
 var builder = require('botbuilder');
+var appInsights = require("applicationinsights");
+
+appInsights.setup("152e1f40-62b3-4507-a0af-c41c3ea1506f").start();
 
 //=========================================================
 // Bot Setup
