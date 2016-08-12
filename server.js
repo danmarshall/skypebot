@@ -143,6 +143,7 @@ bot.beginDialogAction('help', '/help', { matches: /^help/i });
 // Bots Dialogs
 //=========================================================
 
+/*
 bot.dialog('/', [
     function (session) {
         // Send a greeting and show help.
@@ -166,6 +167,23 @@ bot.dialog('/', [
         session.send("Ok... See you later!");
     }
 ]);
+*/
+
+bot.dialog('/', [function (session) {
+    var msg = new builder.Message(session)
+        .attachments([
+            new builder.HeroCard(session)
+                .title("Test Card")
+                .text("Select an option")
+                .buttons([
+                    builder.CardAction.imBack(session, "yes", "Yes"),
+                    builder.CardAction.imBack(session, "no", "No")
+                ])
+        ]);
+    builder.Prompts.choice(session, msg, "yes|no");
+}, function (session, results) {
+    session.send(`You chose ${results.response.entity}`);
+}]);
 
 bot.dialog('/menu', [
     function (session) {
