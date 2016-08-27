@@ -233,7 +233,7 @@ bot.dialog('/prompts', [
         });
         session.endDialog(msg);
     }
-]).cancelAction('cancelPrompts');
+]).cancelAction('/menu');
 
 bot.dialog('/picture', [
     function (session) {
