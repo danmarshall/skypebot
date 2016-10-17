@@ -201,12 +201,9 @@ var questionFunctions = [];
 
 for (var i = 0; i < questions.length; i++) {
     var fn = function (session, results) {
-	session.myResponses = session.myResponses || [];
-	
-	if (results && "response" in results) {
-		session.myResponses.push(results.response);
+	if (i > 0) {
+	  session.send("You entered '%s'", results.response);
 	}
-	    
         builder.Prompts.text(session, questions[i]);
     };
     questionFunctions.push(fn);
@@ -214,8 +211,7 @@ for (var i = 0; i < questions.length; i++) {
 
 //add the final message
 questionFunctions.push(function (session, results) {
-	session.myResponses.push(results.response);
-        session.send(JSON.stringify(session.myResponses));
+	session.send("You entered '%s'", results.response);
     }
 );
 
