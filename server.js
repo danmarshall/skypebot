@@ -172,7 +172,7 @@ bot.dialog('/', [
 
 bot.dialog('/menu', [
     function (session) {
-        builder.Prompts.choice(session, "What demo would you like to run?", "prompts|picture|cards|list|carousel|receipt|actions|signin|(quit)");
+        builder.Prompts.choice(session, "What demo would you like to run?", "prompts|picture|cards|list|carousel|receipt|actions|signin|questions|(quit)");
     },
     function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
@@ -194,6 +194,32 @@ bot.dialog('/help', [
         session.endDialog("Global commands that are available anytime:\n\n* menu - Exits a demo and returns to the menu.\n* goodbye - End this conversation.\n* help - Displays these commands.");
     }
 ]);
+
+var questions = ['Hi! What is your name?', 'What is your age?', 'What is your favorite color?'];
+
+var questionFunctions = [];
+
+for (var i = 0; i < questions.length; i++) {
+    var fn = function (session, results) {
+	session.myResponses = session.myResponses || [];
+	
+	if (results && "response" in results) {
+		session.myResponses.push(results.response);
+	}
+	    
+        builder.Prompts.text(session, questions[i]);
+    };
+    questionFunctions.push(fn);
+}
+
+//add the final message
+questionFunctions.push(function (session, results) {
+	session.myResponses.push(results.response);
+        session.send(JSON.stringify(session.myResponses));
+    }
+);
+
+bot.dialog('/questions', questionFunctions);
 
 bot.dialog('/prompts', [
     function (session) {
