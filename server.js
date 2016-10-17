@@ -201,7 +201,9 @@ var questionFunctions = [];
 
 for (var i = 0; i < questions.length; i++) {
     var fn = function (session, results) {
-	if (i > 0) {
+	if (i === 0) {
+	  session.send("Let me ask some questions");
+	} else {
 	  session.send("You entered '%s'", results.response);
 	}
         builder.Prompts.text(session, questions[i]);
